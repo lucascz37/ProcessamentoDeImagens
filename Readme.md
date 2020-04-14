@@ -1,9 +1,10 @@
-#Processador digital de imagens
+# Processador digital de imagens
 Feito com java e framework javaFx
-##Screenshot
+## Screenshot
 ![](imagens/ex.png)
 
-##Operações Adicionadas
+## Operações Adicionadas
+
 ### Separar Bandas R,G,B
 ### Cinza R, G, B e M
 ### Negativo RGB e YIQ
