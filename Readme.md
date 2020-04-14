@@ -1,7 +1,7 @@
 #Processador digital de imagens
 Feito com java e framework javaFx
 ##Screenshot
-![](imagens/ex.png
+![](imagens/ex.png)
 
 ##Operações Adicionadas
 ### Separar Bandas R,G,B
