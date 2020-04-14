@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?packge br.com.edu.layout?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="window" minHeight="400.0" minWidth="640.0" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.edu.layout.MainScreen">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Arquivo">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#openFile" text="Abrir..." />
+            <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Salvar..." />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Filtros">
+               <items>
+                  <Menu mnemonicParsing="false" text="Banda">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#setBandaR" text="R" />
+                        <MenuItem mnemonicParsing="false" onAction="#setBandaG" text="G" />
+                        <MenuItem mnemonicParsing="false" onAction="#setBandaB" text="B" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Cinza">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#setCinzaR" text="R" />
+                        <MenuItem mnemonicParsing="false" onAction="#setCinzaG" text="G" />
+                        <MenuItem mnemonicParsing="false" onAction="#setCinzaB" text="B" />
+                        <MenuItem mnemonicParsing="false" onAction="#setCinzaM" text="M" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Negativo">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setNegativeRGB" text="RGB" />
+                        <MenuItem mnemonicParsing="false" onAction="#setNegativeY" text="Y" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Conversão">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#convertRGBtoYIQ" text="RGB-&gt;YIQ-&gt;RGB" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Brilho">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setAumentativoRGB" text="Aumentativo RGB" />
+                        <MenuItem mnemonicParsing="false" onAction="#setAumentativoYIQ" text="Aumentativo YIQ" />
+                        <MenuItem mnemonicParsing="false" onAction="#setMultiplicativoRGB" text="Multiplicativo RGB" />
+                        <MenuItem mnemonicParsing="false" onAction="#setMultiplicativoYIQ" text="Multiplicativo YIQ" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Aumento de Tonalidade">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setTonR" text="TonalidadeR" />
+                        <MenuItem mnemonicParsing="false" onAction="#setTonG" text="Tonalidade G" />
+                        <MenuItem mnemonicParsing="false" onAction="#setTonB" text="Tonalidade B" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Operações Locais">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setMediana" text="Mediana" />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#setBinary" text="Binarização" />
+               </items>
+        </Menu>
+            <Menu mnemonicParsing="false" text="Sobre">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showCredits" text="Creditos" />
+               </items></Menu>
+      </menus>
+    </MenuBar>
+      <BorderPane minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+         <right>
+            <ImageView fx:id="filtered" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="10.0" right="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </right>
+         <left>
+            <ImageView fx:id="original" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="30.0" left="10.0" right="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+      </BorderPane>
+  </children>
+</VBox>
