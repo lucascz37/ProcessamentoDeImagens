@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 
 public class ImageHandler {
 
@@ -302,11 +303,11 @@ public class ImageHandler {
         return convertYIQtoRGB(imageYIQ);
     }
 
-    public void mediana(){
+    public void mediana(int tamMatriz){
         for(int i = 0; i < image.getHeight(); i++){
             for(int j= 0; j < image.getWidth(); j++){
-                int[] matriz = new int[9];
-                int ordemMatriz = (int) Math.sqrt(matriz.length);
+                int[] matriz = new int[tamMatriz*tamMatriz];
+                int ordemMatriz = tamMatriz;
                 int contador = 0;
                 for(int k = 0; k < ordemMatriz; k++){
                     for(int l = 0; l < ordemMatriz; l++){
@@ -320,11 +321,114 @@ public class ImageHandler {
                     }
                 }
                 Arrays.sort(matriz);
-                filteredImage.setRGB(j,i, new Color(matriz[4], matriz[4], matriz[4]).getRGB());
+                int meio = matriz.length/2;
+                filteredImage.setRGB(j,i, new Color(matriz[meio], matriz[meio], matriz[meio]).getRGB());
             }
         }
     }
 
+    public void moda(int tamMatriz){
+        for(int i = 0; i < image.getHeight(); i++){
+            for(int j= 0; j < image.getWidth(); j++){
+                int[] matriz = new int[tamMatriz*tamMatriz];
+                int ordemMatriz = tamMatriz;
+                int contador = 0;
+                for(int k = 0; k < ordemMatriz; k++){
+                    for(int l = 0; l < ordemMatriz; l++){
+                        try {
+                            Color pixelColor = new Color(image.getRGB(j+l-(ordemMatriz/2),i+k-(ordemMatriz/2)));
+                            matriz[contador] = pixelColor.getRed();
+                        }catch (ArrayIndexOutOfBoundsException e){
+                            matriz[contador] = 0;
+                        }
+                        contador++;
+                    }
+                }
+                Arrays.sort(matriz);
+                int moda = 0;
+                int repeticoes = 0;
+                int repeticoesProx = 0;
+                for(int m = 0; m<matriz.length-1;m++){
+                    if(matriz[m] == matriz[m+1]){
+                        if(matriz[m] == moda){
+                            repeticoes++;
+                            moda=matriz[m];
+                        }else{
+                            repeticoesProx++;
+                            if(repeticoesProx > repeticoes){
+                                moda = matriz[m];
+                                repeticoes = repeticoesProx;
+                                repeticoesProx = 0;
+                            }
+                        }
+                    }else if(matriz[m] != matriz[m+1]){
+                        repeticoesProx = 0;
+                    }
+                }
+
+                if(moda == 0){
+                    moda = matriz[matriz.length/2];
+                }
+
+                filteredImage.setRGB(j,i, new Color(moda, moda, moda).getRGB());
+            }
+        }
+    }
+
+    public void convolucao(double[] kernel){
+        for(int i = 0; i < image.getHeight(); i++){
+            for(int j= 0; j < image.getWidth(); j++){
+                int ordemMatriz = (int) Math.sqrt(kernel.length);
+                int contador = 0;
+                int valorPixel = 0;
+                for(int k = 0; k < ordemMatriz; k++){
+                    for(int l = 0; l < ordemMatriz; l++){
+                        try {
+                            Color pixelColor = new Color(image.getRGB(j+l-(ordemMatriz/2),i+k-(ordemMatriz/2)));
+                            valorPixel += pixelColor.getRed()*kernel[contador];
+                        }catch (ArrayIndexOutOfBoundsException e){
+                            valorPixel += 0;
+                        }
+                        contador++;
+                    }
+                }
+                if(valorPixel> 255){
+                    valorPixel = 255;
+                }else if(valorPixel < 0){
+                    valorPixel = 0;
+                }
+                filteredImage.setRGB(j,i, new Color(valorPixel, valorPixel, valorPixel).getRGB());
+            }
+        }
+    }
+
+
+    public void ruido(){
+        for(int i = 0; i< image.getHeight(); i++){
+            for(int j = 0; j< image.getWidth(); j++){
+                int valor = image.getRGB(j,i) - filteredImage.getRGB(j,i);
+                filteredImage.setRGB(j,i,valor);
+            }
+        }
+    }
+
+    public void setSaltPepper(int probalidade){
+        Random random = new Random();
+        for(int i = 0; i < image.getHeight(); i++){
+            for(int j= 0; j < image.getWidth(); j++){
+                if(random.nextInt(100+1) < probalidade){
+                    if(random.nextInt(probalidade+1) > probalidade/2){
+                        filteredImage.setRGB(j,i, new Color(255, 255, 255).getRGB());
+                    }else{
+                        filteredImage.setRGB(j,i, new Color(0, 0, 0).getRGB());
+                    }
+                }else{
+                    filteredImage.setRGB(j,i,image.getRGB(j,i));
+                }
+            }
+        }
+
+    }
     public BufferedImage getImage(){
         return image;
     }

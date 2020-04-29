@@ -57,7 +57,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Aumento de Tonalidade">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#setTonR" text="TonalidadeR" />
+                        <MenuItem mnemonicParsing="false" onAction="#setTonR" text="Tonalidade R" />
                         <MenuItem mnemonicParsing="false" onAction="#setTonG" text="Tonalidade G" />
                         <MenuItem mnemonicParsing="false" onAction="#setTonB" text="Tonalidade B" />
                      </items>
@@ -65,8 +65,12 @@
                   <Menu mnemonicParsing="false" text="Operações Locais">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#setMediana" text="Mediana" />
+                        <MenuItem mnemonicParsing="false" onAction="#setModa" text="Moda" />
+                        <MenuItem mnemonicParsing="false" onAction="#setConvolucao" text="Convolução" />
                     </items>
                   </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#getRuido" text="Comparar Ruido" />
+                  <MenuItem mnemonicParsing="false" onAction="#setSaltAndPepper" text="Ruido Salt And Pepper" />
                   <MenuItem mnemonicParsing="false" onAction="#setBinary" text="Binarização" />
                </items>
         </Menu>

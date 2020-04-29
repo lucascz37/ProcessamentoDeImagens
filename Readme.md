@@ -8,6 +8,14 @@ Feito com java e framework javaFx
 ### Cinza R, G, B e M
 ### Negativo RGB e YIQ
 ### Conversão RGB para YIQ e vice versa
-### Brilho aumentativo e multiplicativo RGB e YIQ
-### Operações Locais: mediana
 ### Binarização
+### Brilho aditivo em RGB
+### Brilho aditivo em Y
+### Brilho multiplicativo em RGB
+### Brilho multiplicativo em Y
+### Aumento de tonalidade
+### Operações Locais: Convolução
+### Operações Locais: Mediana
+### Operações Locais: Moda
+### Ruído de método
+### Inserção de ruído Salt and Pepper
